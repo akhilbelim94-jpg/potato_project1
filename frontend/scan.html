@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <title>Grootify | Scan & result</title>
+
+    <style>
+
+         body {
+            font-family: Arial, sans-serif;
+            background: url('./images/bg1.jpg') no-repeat center center fixed;
+       }
+       .logo .text-primary, .logo span  {
+            color: #c78500;
+       }
+
+      .navbar a:hover{
+            border-bottom: #c78500 2px solid;
+       }
+
+      .social a i:hover {
+        color: #c78500 !important;
+      }
+
+      .scan-page .navbar {
+        background: whitesmoke;
+    }
+
+     .navbar.top a {
+        text-align: center;
+        justify-content: center;
+        color: black;
+     }
+     .navbar nav {
+        margin-top: 15px;
+     }
+     .navbar {
+        width: 100%;
+        background: #333;
+
+     }
+
+     .navbar .open-btn {
+        font: bold;
+        border: black 2px;
+        transition: 0.8;
+     }
+
+     .navbar .open-btn:hover{
+        border-bottom: none;
+     }
+     .navbar .scan-btn {
+        margin-top: -5px;
+     }
+
+    .scan-container {
+        background: url('./images/bg4.jpg') no-repeat center center/cover;
+        opacity: 0.8;
+        padding: 30px;
+        border-radius: 12px;
+        border: 3px solid #966F33 ;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        width: 420px;
+        text-align: center;
+        margin: 90px auto 30px;
+    }
+
+    h1 {
+        color: #c78500;
+    }
+
+    .scan-container h1 {
+        border-bottom:  2px dotted;
+        color: #c78500;
+    }
+
+    p {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: black;
+        font-size: 20px;
+    }
+
+    /* Drag & Drop */
+    .drop-area {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: 1.5px solid #966F33;
+        background: #85994a;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .drop-area.active {
+        background: #e8f5e9;
+    }
+
+    .drop-area #leafPreview{
+        border-style: rectangular;
+        padding: 8px;
+        margin-top: 15px;
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    #leafPreview.active{
+        border: 2px dashed #966F33;
+    }
+
+    .browse-btn {
+        background: #966F33;
+        color: black;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .browse-btn:hover {
+        background: #C8B560;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    img {
+        width: 100%;
+        max-height: 220px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-top: 15px;
+        display: none;
+    }
+
+    .scan-btn {
+        background: #966F33;
+        color: black ;
+        font: bold;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    .scan-btn:hover {
+        background: #C8B560;
+    }
+
+    /* Result Card */
+    .result-card {
+        border: 1.5px solid #C8B560 ;
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: url('./images/resultcard.jpg') no-repeat center center/cover;
+        opacity: 0.9;
+    }
+
+    .result-title {
+        margin-top: 15px;
+        border: #966F33 2px solid;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .confidence {
+        font-family: cursive;
+        border: #966F33 2px solid;
+        border-radius: 20px;
+        color: black;
+        margin-top: 15px;
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .healthy {
+        font-family: cursive;
+        background-color: transparent;
+        color: black;
+    }
+
+    .disease {
+        font-family: cursive;
+        background-color: transparent;
+        color: black;
+    }
+
+    .recom {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: 1.5px solid #966F33;
+        margin-top: 20px;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        background: #85994a;
+        margin: 20px 0;
+    }   
+
+    .recom h1 {
+        font-style: bold;
+        font-size: 18px;
+        color: white;
+        padding: 10px; 
+    }
+
+    .recom p {
+        font-size: 20px;
+        color: white;
+    }
+
+    .recom-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 15px;
+        background: #966F33;
+        color: black;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 16px;
+        font: bold;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: -10px;
+    }
+
+    .recom-btn:hover {
+        background: #C8B560;
+    }
+    </style>
+</head>
+
+
+<body>
+    <div class="scan-container">
+    <h1>Scan a Leaf</h1>
+    <p>Upload a potato leaf image to detect disease</p>
+
+    <div class="drop-area" id="dropArea">
+        <p>Drag & Drop Leaf Image</p>
+        <button class="browse-btn" onclick="openFile()">Browse Image</button>
+        <input type="file" id="fileInput" accept="image/*">
+        <img id="leafPreview">
+    </div>
+
+    
+
+    <button class="scan-btn" onclick="scanLeaf()">Scan Leaf</button>
+
+    <!-- RESULT SECTION -->
+    <div class="result-card" id="resultCard">
+        <div class="result-title" id="resultText"></div>
+        <div class="confidence" id="confidenceText"></div>
+        
+    </div>
+
+    <div class="recom" id="recomSection" style="display: none;">
+        <h1>Recommended Products</h1>
+        <p>Here's are some recommended products to prevent disease.</p>
+        <a href="products.html" class="btn recom-btn" ><i class="fas fa-eye 2x "></i>
+                View Products</a>
+    </div>
+
+</div>
+
+
+
+<script>
+    const dropArea = document.getElementById("dropArea");
+    const fileInput = document.getElementById("fileInput");
+    const preview = document.getElementById("leafPreview");
+    const resultCard = document.getElementById("resultCard");
+    const resultText = document.getElementById("resultText");
+    const confidenceText = document.getElementById("confidenceText");
+    const recomSection = document.getElementById("recomSection");
+
+    let selectedFile = null;
+
+    function openFile() {
+        fileInput.click();
+    }
+
+    dropArea.addEventListener("dragover", e => {
+        e.preventDefault();
+        dropArea.classList.add("active");
+    });
+
+    dropArea.addEventListener("dragleave", () => {
+        dropArea.classList.remove("active");
+    });
+
+    dropArea.addEventListener("drop", e => {
+        e.preventDefault();
+        dropArea.classList.remove("active");
+        selectedFile = e.dataTransfer.files[0];
+        showPreview(selectedFile);
+    });
+
+    fileInput.addEventListener("change", () => {
+        selectedFile = fileInput.files[0];
+        showPreview(selectedFile);
+    });
+
+    function showPreview(file) {
+        if (!file) return;
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+
+    async function scanLeaf() {
+        
+        recomSection.style.display = "none";
+
+        if (!selectedFile) {
+            alert("Please upload a leaf image first");
+            return;
+        }
+
+        resultCard.style.display = "block";
+        resultText.textContent = "Scanning...";
+        confidenceText.textContent = "";
+        
+
+
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        try {
+            const response = await fetch("http://localhost:8001/predict", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            const confidence = (data.confidence * 100).toFixed(2);
+
+            if (data.class === "Healthy") {
+                resultText.className = "result-title healthy";
+                recomSection.style.display = "none";
+            } else {
+                resultText.className = "result-title disease";
+                recomSection.style.display = "block";
+            }
+
+            resultText.textContent = "Result: " + data.class;
+            confidenceText.textContent = "Confidence: " + confidence + "%";
+
+        } catch (err) {
+            resultText.textContent = "Error connecting to server";
+            confidenceText.textContent = "";
+            recomSection.style.display = "none";
+        }
+    }
+ </script>
+
+
+    <header class="scan-page">
+       <div id="navbar" class="navbar">
+                <h1 class="logo">
+                    <span class="text-primary"><i class="fas fa-leaf"></i>Grootify</span>
+                </h1>
+                <nav>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./index.html#about">About</a></li>
+                        <li><a href="./index.html">Contact</a></li> 
+                        <li><a class="open-btn" href="scan.html"><button class="btn scan-btn">Open to Scan</button></a></li>
+                    </ul>
+                </nav>
+            </div>
+    </header>
+
+     <footer class="footer bg-dark">
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p>Copyright &copy; 2026 - Grootify</p>
+
+    </footer>
+    
+
+
+</body>
+</html>

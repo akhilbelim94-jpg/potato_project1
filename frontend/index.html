@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Welcome to Grootify</title>
+</head>
+<body id="home">
+    <header class="hero">
+       <div id="navbar" class="navbar top">
+                <h1 class="logo">
+                    <span class="text-primary"><i class="fas fa-leaf"></i>Grootify</span>
+                </h1>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li> 
+                        <li class="scan-btn"><a href="scan.html"><button class="scan-btn btn">Open to Scan</button></a></li>    
+                    </ul>
+                </nav>
+            </div>
+            
+
+            <div class="content">
+                <h1>Scan Your Potato Leaf</h1>
+                <p>Upload a potato leaf image and get instant AI-based disease detection along with treatment recommendations.</p>
+                <a href="#about" class="btn" ><i class="fas fa-chevron-right"></i>
+                Read More</a>
+            </div>
+    </header>
+
+     <main>
+    <!--About: Icons-->
+        <section id="about" class="icons bg-light">
+            <div class="icons-container">
+                <div class="icons">
+                    <i class="fas fa-leaf fa-2x"></i>
+                    <div>
+                        <h3>AI Leaf Scan</h3>
+                        <p>
+                            Upload or drag & drop a potato leaf image to analyze plant health using advanced AI technology.
+                        </p>
+                    </div>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-brain fa-2x"></i>
+                    <div>
+                        <h3>AI Detection</h3>
+                        <p>
+                           Automatically identifies potato leaf diseases such as Early Blight, Late Blight, or Healthy with high accuracy. 
+                        </p>
+                    </div>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-seedling fa-2x"></i>
+                    <div>
+                        <h3>Treatment</h3>
+                        <p>
+                           Provides disease-specific treatment and prevention suggestions to help farmers protect crops and improve yield.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        
+
+        <!--About: Buy recomended Products-->
+        <section id="products" class="solutions flex-columns">
+            <div class="row">
+                <div class="column">
+                    <div class="column-1">
+                        <img src="./images/product.jpg" alt="">
+
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="column-2 bg-primary">
+                        <h4>Recommended Products</h4>
+                        <h2>Explore provide solutions</h2>
+                        <p>You can buy our Recommended products to prevent the spread of diseases in your crops.</p>
+                        <a href="./products.html" class="view-btn">
+                            <i class="fas fa-eye"></i>
+                            View
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+         <!--Team-->
+        <section id="team" class="team section-padding">
+            <header class="section-header">
+                <h4>Who I are</h4>
+                <h2>Solo Developer</h2>
+                <p>Build and maintained by a single Developer</p>
+            </header>
+
+        <div class="team-layout">
+    
+            <!-- Leader -->
+            <div class="team-leader">
+                <img src="./images/team/avatar.png" alt="AKKi">
+                <h4>Akki | Akhil Sipahi</h4>
+                <p>Developer & ML Engineer</p>
+                <p></p>
+            </div>
+        </div>
+        </section>
+
+
+     <!--Contact-->
+        <section id="contact" class="contact flex-columns">
+            <div class="row">
+                <div class="column">
+                    <div class="column-1">
+                        <img src="./images/feedback.jpg" alt="">
+
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="column-2 bg-light">
+                        <h2>Request Callback</h2>
+                       <form action="" id="contactForm" class="callback-form">
+                            <div class="form-control">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-control">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-control">
+                                <label for="email">Feedback</label>
+                                <textarea name="message" placeholder="Enter your Feedback"></textarea>
+                            </div>
+                            <input type="submit" value="Send" id="submit" class="btn">
+                       </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer bg-dark">
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p>Copyright &copy; 2026 - Grootify</p>
+
+    </footer>
+
+<!-- EmailJS library -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+    emailjs.init("BVFEU3oS29wxl1MIq"); 
+})();
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+   emailjs.sendForm(
+    "service_zldmr8t",
+    "template_7sl7b49",
+    this,
+    "BVFEU3oS29wxl1MIq"   
+).then(
+        function () {
+            alert("Feedback sent successfully!");
+            document.getElementById("contactForm").reset();
+        },
+        function (error) {
+            alert("Failed to send feedback");
+            console.log(error);
+        }
+    );
+});
+</script>
+
+</body>
+</html>

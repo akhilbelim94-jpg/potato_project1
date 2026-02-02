@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Recommended Products</title>
+
+    <style>
+        body {
+            background: url('./images/bg4.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo .text-primary, .logo span  {
+            color: #c78500;
+       }
+
+      .navbar a:hover{
+            border-bottom: #c78500 2px solid;
+       }
+
+      .social a i:hover {
+        color: #c78500;
+      }
+
+      .product-page .navbar {
+        background: whitesmoke;
+        }
+   
+     .navbar nav {
+        margin-top: 15px;
+        }
+     .navbar {
+        width: 100%;
+        background: rgba(51, 51, 51, 0.85);
+        position: fixed;
+        top: 0;
+        z-index: 100;
+     }
+
+     .navbar .scan-btn {
+        background-color: #ffa500;
+        font-weight: bold;
+        border: black 2px;
+        transition: 0.8s;
+     }
+
+     .navbar .scan-btn:hover {
+        background-color: #c78500;
+        border: black 2px;
+     }
+
+     .navbar .open-btn:hover{
+        border-bottom: none;
+     }
+     .navbar .scan-btn {
+        margin-top: -5px;
+     }
+
+    .products-header {
+        margin-top: 80px;
+        border-radius: 20px;
+        color: #333 ;
+        background: #966F33;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 40px 20px 20px 20px;
+        border:3px solid #333;
+        opacity: 0.9;
+        }
+
+    .products-header h1 {
+        color: black;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+        font-weight: lighter;
+        padding-bottom: 20px;
+        border-bottom: black 2px dashed;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+
+
+    .products-header p {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        margin-top: 20px;
+        padding: 10px;  
+    }
+
+    .early-blight h3, .late-blight h3 {
+        text-align: center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 20px;
+        color: black;
+        text-align: center;
+    }
+
+    .early-blight h2 , .late-blight h2  {
+        color: black;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 30px;    
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .early-blight p , .late-blight p  {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        padding:18px;
+        margin-top: 5px;
+        border-bottom: black 1.5px solid;  
+    }
+
+    .early-blight, .late-blight {
+        border: 3px solid #333;
+        border-radius: 20px;
+        height: 20%;
+        padding: 0 20px;
+        background:  whitesmoke;
+        opacity: 0.95;
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .early-blight ul, .late-blight ul {
+        display: flex;
+        gap: 30px;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        list-style-type: none;
+        padding: 5px;
+    }
+
+    .early-blight li, .late-blight li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background: #feab3d;
+        margin: 20px;
+        padding: 20px;
+        border: 1.5px solid black;
+        border-radius: 10px;
+        width: 230px;
+        text-align: center;
+        }
+
+    .early-blight img, .late-blight img {
+        display: block;
+        padding: 10px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 10px auto;
+        object-fit: contain;  
+    }
+        
+    .buy-btn {
+        background: #ffa500;
+        color: black ;
+        font: bold;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    .buy-btn:hover {
+        background: #c78500;
+    }
+
+    </style>
+    
+</head>
+<body>
+
+     <header class="product-page">
+       <div id="navbar" class="navbar">
+                <h1 class="logo">
+                    <span class="text-primary"><i class="fas fa-leaf "></i>Grootify</span>
+                </h1>
+                <nav>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./index.html#about">About</a></li>
+                        <li><a href="./index.html">Contact</a></li> 
+                        <li><a class="open-btn" href="scan.html"><button class="btn scan-btn">Open to Scan</button></a></li>
+                    </ul>
+                </nav>
+            </div>
+    </header>
+
+    <br>
+
+    <div class="products-header">
+        <div>
+            <h1>Recommended Products</h1>
+            <p>You can buy our recommended products to prevent the spread of diseases in your crops</p>
+        </div>
+    </div>
+
+    <div class="early-blight">
+        <h2>Early Blight Control</h2>
+        <p>Effective solutions to manage and prevent early blight in your crops.</p>
+        <ul>
+            <li>
+                <h3>Antracol Fungicide (Bayer)</h3>
+                <img src="./images/early-blight-products/product1.jpeg" alt="">
+                <a href="https://www.bighaat.com/products/antracol?pf=others"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <li>
+                <h3>Blitox Fungicide – Copper oxychloride</h3>
+                <img src="./images/early-blight-products/product2.jpeg" alt="">
+                <a href="https://www.bighaat.com/products/tata-rallis-blitox-fungicide?pf=others"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <li>
+                <h3>Custodia Fungicide</h3>
+                <img src="./images/early-blight-products/product3.jpeg" alt=" ">
+                <a href="https://www.bighaat.com/products/adama-custodia-fungicide?srsltid=AfmBOopWkGu_uqqduJLySneSB5cqbYaypLFgtvBs6M0N8HZ7qh0OwJhY&utm_source=chatgpt.com"><button class="buy-btn">Buy Now</button></a>
+            </li>
+            <li>
+                <h3>Saaf Fungicide</h3>
+                <img src="./images/early-blight-products/product4.jpeg" alt="">
+                <a href="https://www.bighaat.com/products/upl-saaf-fungicide?utm_source=chatgpt.com"><button class="buy-btn">View to buy</button></a>
+            </li>
+            
+        </ul>
+    </div>
+
+     <div class="late-blight">
+        <h2>Late Blight Control</h2>
+        <p>Effective solutions to manage and prevent late blight in your crops.</p>
+        <ul>
+            <li>
+                <h3>Infinito Fungicide</h3>
+                <img src="./images/late-blight-products/product1.jpeg" alt="">
+                <a href="https://www.bighaat.com/collections/chemical-management-of-blackmold/products/infinito-fungicide?utm_source=chatgpt.com"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <li>
+                <h3>Revus Fungicide</h3>
+                <img src="./images/late-blight-products/product2.jpeg" alt="">
+                <a href="https://www.manaagrimart.com/products/revus-fungicide-syngenta/2830499000000483395?variant=2830499000000483387"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <li>
+                <h3>Derecho Fungicide</h3>
+                <img src="./images/late-blight-products/product3.jpeg" alt="">
+                <a href="https://agrinutrients.in/product/derecho_fungicide__ethaboxam_40__sc__%E2%80%93_for_late_blight___downy_mildew_control_in_potato?k=620"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <li>
+                <h3>Acrobat Fungicide</h3>
+                <img src="./images/late-blight-products/product4.jpeg" alt=" ">
+                <a href="https://adyaenterprises.in/product/acrobat-fungicide/?utm_source=chatgpt.com"><button class="buy-btn">View to buy</button></a>
+            </li>
+            <br>
+            
+            
+        </ul>
+    </div>
+
+
+     <footer class="footer bg-dark">
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p>Copyright &copy; 2026 - Grootify</p>
+
+    </footer>
+
+
+    
+</body>
+</html>

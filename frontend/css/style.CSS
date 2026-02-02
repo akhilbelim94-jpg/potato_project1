@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+} 
+
+body {
+    font-family: 'Open Sana', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+ul {
+    list-style: none;
+}
+
+a 
+{
+    color: #333;
+    text-decoration: none;
+}
+
+h1, h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    
+}
+
+p {
+    margin: 10px 0;
+}
+
+img {
+    width: 100%;
+}
+
+/*Navbar*/
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: #fff;
+    opacity: 0.8;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0px;
+    padding: 0 30px;
+    transition: 0.5s;
+
+}
+
+.navbar.top {
+    background: whitesmoke;
+}
+
+.navbar a {
+    color: #333;
+    padding: 10px 20px;
+    transition: 0.8s; 
+    margin: 0 5px;
+}
+
+.navbar a:hover{
+    border-bottom: #28a745 4px solid;
+    transition: 0;
+}
+
+.navbar .scan-btn a:hover{
+    border-bottom: none;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar .logo{
+    font-weight: 400;
+}
+
+.hero {
+    background: url('/frontend/images/bg.jpg') no-repeat center center/cover;
+    height: 100vh;
+    position: relative;
+    color: #fff;
+}
+
+.hero .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.hero .content h1 {
+    font-size: 55px;
+    
+}
+
+.hero content p {
+    font-size: 23px;
+    max-width: 600px;
+    margin: 20px 0 30px;
+
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0,0.6);
+}
+
+.hero * {
+    z-index: 10;
+}
+
+.hero.blog {
+    background: url('../images/home/blog.jpg') no-repeat center center/cover;
+    height: 30vh;
+}
+
+
+
+/*Icons*/
+.icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;          
+    padding: 50px;
+}
+
+.icons {
+    padding: 300px;
+    text-align: center;
+    padding: 30px;
+}
+
+.icons h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.icons i {
+    background-color: #28a745;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    margin: 0 auto 15px;
+}
+
+.cases img:hover {
+    opacity: 0.7;
+}
+
+.team img {
+    border-radius: 50%;
+    padding: 20px;
+} 
+
+/*Callback Form*/
+.callback-form {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.callback-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.callback-form .form-control {
+    margin-bottom: 15px;
+}
+
+.callback-form input, .callback-form textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    padding:4px;
+    height: 40px;
+    border: #f5f5f5 1px solid;
+    outline-color: #28a745;
+}
+
+.callback-form textarea{
+    padding:10px 4px;
+    max-height: 100px;
+    
+    /*padding-left: 0;*/
+}
+
+.callback-form .btn {
+    color: #333;
+    padding: 12px 0;
+    margin-top: 20px;
+}
+
+/*footer*/
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 120px;
+    
+}
+
+.footer p {
+    color: #fff;
+}
+
+.footer a {
+    color: #fff;
+} 
+
+.footer a:hover {
+    color: #28a745;
+}
+
+.footer .social > * {
+    margin-right: 30px;               
+}
+
+/*Mobile*/
+@media(max-width: 768px)
+{
+    .navbar {
+        flex-direction: column;
+        height: 120px;
+        padding: 20px;
+    }
+
+    .navbar a {
+        padding: 10px 10px;
+        margin: 0 3px;
+    }
+
+    .icons-container {
+        flex-direction: column;
+        padding: 0;
+    }
+
+
+    .team-layout {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;    
+        gap: 40px;              
+    }
+
+    .team-leader {
+        text-align: center;     
+    }
+
+    .flex-items {
+        display: flex;
+        gap: 20px;              
+        flex-wrap: wrap;         
+        justify-content: center; 
+    }
+
+    .flex-items div {
+      text-align: center;     
+    }
+
+   .scan-container {
+        margin-top: 150px !important;
+   }
+
+/* Section spacing */
+
+    .products-header {
+        margin-top: 120px !important;
+    }
+
+    .early-blight,
+    .late-blight {
+        margin: 15px;
+        padding: 10px;
+    }
+
+    /* Stack cards vertically */
+    .early-blight ul,
+    .late-blight ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+    }
+
+    /* Product card */
+    .early-blight li,
+    .late-blight li {
+        width: 90%;
+        max-width: 320px;
+        height: auto;
+        padding: 16px;
+        border-radius: 16px;
+        margin: 10px auto;
+    }
+
+    /* Product title */
+    .early-blight h3,
+    .late-blight h3 {
+        font-size: 16px;
+        min-height: unset;
+        margin-bottom: 10px;
+    }
+
+    /* Product image */
+    .early-blight img,
+    .late-blight img {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Buy button full width */
+    .early-blight button,
+    .late-blight button {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .flex-columns .column, .flex-grid .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    
+}
+
+
