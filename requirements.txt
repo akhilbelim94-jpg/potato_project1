@@ -1,8 +1,10 @@
 fastapi
-uvicorn[standard]
+uvicorn
 pillow
 numpy
-tensorflow 2.5pip
-opencv
-scikit-learn
-seaborn
+opencv-python
+tensorflow==2.15.1
+sqlalchemy
+pymysql
+python-multipart
+pydantic[email]

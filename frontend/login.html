@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Grootify | Login</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        body {
+            background: url('./images/bg1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* navbar */
+        .navbar {
+            width: 100%;
+            background: #333;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar a {
+            color: #fff;
+        }
+
+        .logo .text-primary {
+            color: #c78500;
+        }
+
+        .navbar a:hover {
+            border-bottom: #c78500 2px solid;
+        }
+
+        /* login card */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 35px;
+            border-radius: 16px;
+            border: 3px solid #966F33;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 420px;
+            margin: 120px auto 40px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            color: #c78500;
+            font-size: 28px;
+            margin-bottom: 6px;
+            border-bottom: 2px dotted #966F33;
+            padding-bottom: 12px;
+        }
+
+        .login-container p.subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* form */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #966F33;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #c78500;
+            box-shadow: 0 0 0 3px rgba(199, 133, 0, 0.15);
+        }
+
+        /* show/hide password */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 42px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #966F33;
+            font-size: 15px;
+        }
+
+        /* error message */
+        .error-msg {
+            color: #e53e3e;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* submit button */
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            background: #966F33;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            background: #c78500;
+        }
+
+        .login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* alert box */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 18px;
+            display: none;
+            text-align: center;
+        }
+
+        .alert-error {
+            background: #fff5f5;
+            color: #e53e3e;
+            border: 1px solid #feb2b2;
+        }
+
+        .alert-success {
+            background: #f0fff4;
+            color: #276749;
+            border: 1px solid #9ae6b4;
+        }
+
+        /* register link */
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #c78500;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* divider */
+        .divider {
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+            margin: 18px 0;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        /* loading spinner */
+        .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff55;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar" class="navbar">
+        <h1 class="logo">
+            <span class="text-primary"><i class="fas fa-leaf"></i> Grootify</span>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html#about">About</a></li>
+                <li><a href="./register.html">Register</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-container">
+
+        <h1><i class="fas fa-leaf"></i> Grootify</h1>
+        <p class="subtitle">Welcome back! Login to your account</p>
+
+        <!-- alert box -->
+        <div class="alert" id="alertBox"></div>
+
+        <!-- login form -->
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <p class="error-msg" id="emailError">Please enter a valid email</p>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Enter your password">
+                <!-- eye icon to show/hide password -->
+                <i class="fas fa-eye toggle-password" id="toggleIcon" onclick="togglePassword()"></i>
+            </div>
+            <p class="error-msg" id="passwordError">Please enter your password</p>
+        </div>
+
+        <button class="login-btn" id="loginBtn" onclick="loginFarmer()">
+            <span id="btnText">Login</span>
+            <div class="spinner" id="spinner"></div>
+        </button>
+
+        <div class="divider">or</div>
+        <div id="g_id_onload" data-client_id="82309149742-nrrrmnu18fhi4tqvtgd486ule2rca90h.apps.googleusercontent.com" data-callback="handleGoogleLogin"
+            data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+            data-shape="rectangular" data-width="350">
+        </div>
+
+        <div class="register-link">
+            Don't have an account? <a href="./register.html">Register here</a>
+        </div>
+
+    </div>
+
+
+    <script>
+        const API = "http://127.0.0.1:8000";
+
+        async function loginFarmer() {
+
+            // get values from form
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            // hide previous errors
+            hideAllErrors();
+
+            // -------------------------------------------------------
+            // VALIDATION
+            // -------------------------------------------------------
+            let valid = true;
+
+            if (!email || !email.includes("@")) {
+                document.getElementById("emailError").style.display = "block";
+                valid = false;
+            }
+
+            if (!password) {
+                document.getElementById("passwordError").style.display = "block";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // -------------------------------------------------------
+            // SEND TO BACKEND
+            // -------------------------------------------------------
+            setLoading(true);
+
+            try {
+                const response = await fetch(`${API}/auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // login successful!
+                    // save JWT token and farmer info to localStorage
+                    localStorage.setItem("token", data.access_token);
+                    localStorage.setItem("farmer_email", email);
+
+                    // get farmer name from /auth/me route
+                    const meResponse = await fetch(`${API}/auth/me`, {
+                        headers: { "Authorization": `Bearer ${data.access_token}` }
+                    });
+                    const meData = await meResponse.json();
+                    localStorage.setItem("farmer_name", meData.name);
+
+                    // show success and redirect to scan page
+                    showAlert("Login successful! Redirecting...", "success");
+                    setTimeout(() => {
+                        window.location.href = "./scan.html";
+                    }, 1500);
+
+                } else {
+                    // wrong email or password
+                    showAlert(data.detail || "Login failed. Check your email and password.", "error");
+                }
+
+            } catch (err) {
+                showAlert("Cannot connect to server. Make sure backend is running.", "error");
+            }
+
+            setLoading(false);
+        }
+
+
+        // -------------------------------------------------------
+        // HELPER FUNCTIONS
+        // -------------------------------------------------------
+
+        function hideAllErrors() {
+            document.getElementById("emailError").style.display = "none";
+            document.getElementById("passwordError").style.display = "none";
+            document.getElementById("alertBox").style.display = "none";
+        }
+
+        function showAlert(message, type) {
+            const box = document.getElementById("alertBox");
+            box.textContent = message;
+            box.className = `alert alert-${type}`;
+            box.style.display = "block";
+        }
+
+        function setLoading(isLoading) {
+            const btn = document.getElementById("loginBtn");
+            const spinner = document.getElementById("spinner");
+            const btnText = document.getElementById("btnText");
+
+            btn.disabled = isLoading;
+            spinner.style.display = isLoading ? "block" : "none";
+            btnText.style.display = isLoading ? "none" : "block";
+        }
+
+        // show or hide password when eye icon clicked
+        function togglePassword() {
+            const input = document.getElementById("password");
+            const icon = document.getElementById("toggleIcon");
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.className = "fas fa-eye-slash toggle-password";
+            } else {
+                input.type = "password";
+                icon.className = "fas fa-eye toggle-password";
+            }
+        }
+
+        // allow pressing Enter key to submit
+        document.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") loginFarmer();
+        });
+
+        // if farmer already logged in, redirect to scan page directly
+        window.onload = function () {
+            const token = localStorage.getItem("token");
+            if (token) {
+                window.location.href = "./scan.html";
+            }
+        }
+        async function handleGoogleLogin(response) {
+            try {
+                const res = await fetch(`${API}/auth/google`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token: response.credential })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("token", data.access_token);
+                    localStorage.setItem("farmer_name", data.farmer_name);
+                    localStorage.setItem("farmer_email", "");
+                    showAlert("Google login successful! Redirecting...", "success");
+                    setTimeout(() => {
+                        window.location.href = "./scan.html";
+                    }, 1500);
+                } else {
+                    showAlert("Google login failed. Try again.", "error");
+                }
+            } catch (err) {
+                showAlert("Cannot connect to server.", "error");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

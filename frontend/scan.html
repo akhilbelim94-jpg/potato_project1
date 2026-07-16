@@ -1,401 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
-
-    <link rel="stylesheet" href="css/lightbox.min.css">
     <link rel="stylesheet" href="css/utilities.css">
-    <title>Grootify | Scan & result</title>
+    <title>Grootify | Scan & Result</title>
 
     <style>
-
-         body {
+        body {
             font-family: Arial, sans-serif;
             background: url('./images/bg1.jpg') no-repeat center center fixed;
-       }
-       .logo .text-primary, .logo span  {
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background: #333;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            height: 70px;
+            box-sizing: border-box;
+        }
+
+        .logo .text-primary {
             color: #c78500;
-       }
+        }
 
-      .navbar a:hover{
+        .navbar a {
+            color: #fff;
+            padding: 10px 15px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
             border-bottom: #c78500 2px solid;
-       }
+        }
 
-      .social a i:hover {
-        color: #c78500 !important;
-      }
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
 
-      .scan-page .navbar {
-        background: whitesmoke;
-    }
+        .farmer-badge {
+            color: #28a745;
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
 
-     .navbar.top a {
-        text-align: center;
-        justify-content: center;
-        color: black;
-     }
-     .navbar nav {
-        margin-top: 15px;
-     }
-     .navbar {
-        width: 100%;
-        background: #333;
+        .logout-btn {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid #c78500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+        }
 
-     }
+        .logout-btn:hover {
+            background: #c78500;
+        }
 
-     .navbar .open-btn {
-        font: bold;
-        border: black 2px;
-        transition: 0.8;
-     }
+        .scan-wrapper {
+            width: 460px;
+            margin: 90px auto 20px;
+        }
 
-     .navbar .open-btn:hover{
-        border-bottom: none;
-     }
-     .navbar .scan-btn {
-        margin-top: -5px;
-     }
+        .scan-container {
+            background: rgba(134, 107, 50, 0.88);
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid #966F33;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
 
-    .scan-container {
-        background: url('./images/bg4.jpg') no-repeat center center/cover;
-        opacity: 0.8;
-        padding: 30px;
-        border-radius: 12px;
-        border: 3px solid #966F33 ;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        width: 420px;
-        text-align: center;
-        margin: 90px auto 30px;
-    }
+        .scan-container h1 {
+            color: #ffd700;
+            border-bottom: 2px dotted #c78500;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
 
-    h1 {
-        color: #c78500;
-    }
+        .scan-container>p {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-    .scan-container h1 {
-        border-bottom:  2px dotted;
-        color: #c78500;
-    }
+        .drop-area {
+            border: 2px dashed #c78500;
+            background: rgba(133, 153, 74, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
 
-    p {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: black;
-        font-size: 20px;
-    }
+        .drop-area p {
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
 
-    /* Drag & Drop */
-    .drop-area {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        border: 1.5px solid #966F33;
-        background: #85994a;
-        border-radius: 10px;
-        padding: 25px;
-        margin: 20px 0;
-    }
+        .drop-area.active {
+            background: rgba(200, 230, 150, 0.5);
+        }
 
-    .drop-area.active {
-        background: #e8f5e9;
-    }
+        .browse-btn {
+            background: #966F33;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    .drop-area #leafPreview{
-        border-style: rectangular;
-        padding: 8px;
-        margin-top: 15px;
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
+        .browse-btn:hover {
+            background: #C8B560;
+        }
 
-    #leafPreview.active{
-        border: 2px dashed #966F33;
-    }
+        input[type="file"] {
+            display: none;
+        }
 
-    .browse-btn {
-        background: #966F33;
-        color: black;
-        border: none;
-        padding: 10px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-    }
+        #leafPreview {
+            width: 100%;
+            max-height: 220px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-top: 12px;
+            display: none;
+            border: 2px solid #c78500;
+        }
 
-    .browse-btn:hover {
-        background: #C8B560;
-    }
+        .scan-btn {
+            background: #28a745;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
 
-    input[type="file"] {
-        display: none;
-    }
+        .scan-btn:hover {
+            background: #218838;
+        }
 
-    img {
-        width: 100%;
-        max-height: 220px;
-        object-fit: contain;
-        border-radius: 8px;
-        margin-top: 15px;
-        display: none;
-    }
+        /* result card - hidden by default using inline style in HTML */
+        .result-card {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid #966F33;
+        }
 
-    .scan-btn {
-        background: #966F33;
-        color: black ;
-        font: bold;
-        border: none;
-        padding: 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 15px;
-        font-size: 16px;
-    }
+        .result-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 20px;
+            border: 2px solid #966F33;
+            margin-bottom: 10px;
+            color: #333;
+        }
 
-    .scan-btn:hover {
-        background: #C8B560;
-    }
+        .result-title.healthy {
+            color: #276749;
+        }
 
-    /* Result Card */
-    .result-card {
-        border: 1.5px solid #C8B560 ;
-        display: none;
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 8px;
-        background: url('./images/resultcard.jpg') no-repeat center center/cover;
-        opacity: 0.9;
-    }
+        .result-title.disease {
+            color: #c53030;
+        }
 
-    .result-title {
-        margin-top: 15px;
-        border: #966F33 2px solid;
-        border-radius: 20px;
-        font-size: 20px;
-        font-weight: bold;
-    }
+        .confidence {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            padding: 6px;
+            border: 2px solid #966F33;
+            border-radius: 20px;
+            font-family: cursive;
+        }
 
-    .confidence {
-        font-family: cursive;
-        border: #966F33 2px solid;
-        border-radius: 20px;
-        color: black;
-        margin-top: 15px;
-        font-weight: bold;
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
+        .save-status {
+            font-size: 13px;
+            color: #276749;
+            background: #f0fff4;
+            border-radius: 8px;
+            padding: 6px;
+            margin-top: 10px;
+        }
 
-    .healthy {
-        font-family: cursive;
-        background-color: transparent;
-        color: black;
-    }
+        /* recom - NO display:none in CSS. Controlled only by inline style */
+        .recom {
+            background: rgba(133, 153, 74, 0.88);
+            border: 2px solid #966F33;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
 
-    .disease {
-        font-family: cursive;
-        background-color: transparent;
-        color: black;
-    }
+        .recom h2 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
 
-    .recom {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        border: 1.5px solid #966F33;
-        margin-top: 20px;
-        padding: 25px;
-        border-radius: 10px;
-        text-align: center;
-        background: #85994a;
-        margin: 20px 0;
-    }   
+        .recom p {
+            font-size: 15px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
 
-    .recom h1 {
-        font-style: bold;
-        font-size: 18px;
-        color: white;
-        padding: 10px; 
-    }
+        .recom-btn {
+            display: block;
+            padding: 12px;
+            background: #966F33;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            width: auto;
+            max-width: 200px;
+            margin: 0 auto;
+        }
 
-    .recom p {
-        font-size: 20px;
-        color: white;
-    }
+        .recom-btn:hover {
+            background: #C8B560;
+            color: #000;
+        }
 
-    .recom-btn {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 15px;
-        background: #966F33;
-        color: black;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 16px;
-        font: bold;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        height: -10px;
-    }
+        .history-container {
+            width: 460px;
+            margin: 0 auto 40px;
+        }
 
-    .recom-btn:hover {
-        background: #C8B560;
-    }
+        .history-container h2 {
+            color: #fff;
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .history-card {
+            background: rgba(255, 255, 255, 0.93);
+            border: 2px solid #966F33;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .history-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #966F33;
+            flex-shrink: 0;
+        }
+
+        .history-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .history-result {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .history-result.healthy {
+            color: #276749;
+        }
+
+        .history-result.disease {
+            color: #c53030;
+        }
+
+        .history-confidence {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 3px;
+        }
+
+        .history-date {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .delete-scan-btn {
+            background: transparent;
+            border: 1.5px solid #e53e3e;
+            color: #e53e3e;
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .delete-scan-btn:hover {
+            background: #e53e3e;
+            color: white;
+        }
+
+        .no-history {
+            text-align: center;
+            color: white;
+            font-size: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 520px) {
+
+            .scan-wrapper,
+            .history-container {
+                width: 95%;
+            }
+        }
     </style>
 </head>
 
-
 <body>
-    <div class="scan-container">
-    <h1>Scan a Leaf</h1>
-    <p>Upload a potato leaf image to detect disease</p>
 
-    <div class="drop-area" id="dropArea">
-        <p>Drag & Drop Leaf Image</p>
-        <button class="browse-btn" onclick="openFile()">Browse Image</button>
-        <input type="file" id="fileInput" accept="image/*">
-        <img id="leafPreview">
+    <!-- Navbar -->
+    <div id="navbar" class="navbar">
+        <h1 class="logo">
+            <span class="text-primary"><i class="fas fa-leaf"></i> Grootify</span>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html#about">About</a></li>
+                <li><a href="./products.html">Products</a></li>
+                <li><span class="farmer-badge" id="farmerBadge"></span></li>
+                <li><button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button></li>
+            </ul>
+        </nav>
     </div>
 
-    
+    <!-- Scan Wrapper -->
+    <div class="scan-wrapper">
+        <div class="scan-container">
+            <h1><i class="fas fa-leaf"></i> Scan a Leaf</h1>
+            <p>Upload a potato leaf image to detect disease</p>
 
-    <button class="scan-btn" onclick="scanLeaf()">Scan Leaf</button>
+            <!-- Drop Area -->
+            <div class="drop-area" id="dropArea">
+                <p><i class="fas fa-cloud-upload-alt"></i> Drag & Drop Leaf Image here</p>
+                <button class="browse-btn" onclick="openFile()">
+                    <i class="fas fa-folder-open"></i> Browse Image
+                </button>
+                <input type="file" id="fileInput" accept="image/*">
+                <img id="leafPreview" alt="Leaf preview">
+            </div>
 
-    <!-- RESULT SECTION -->
-    <div class="result-card" id="resultCard">
-        <div class="result-title" id="resultText"></div>
-        <div class="confidence" id="confidenceText"></div>
-        
+            <button class="scan-btn" onclick="scanLeaf()">
+                <i class="fas fa-search"></i> Scan Leaf
+            </button>
+
+            <!-- Result Card — hidden by inline style, NOT css class -->
+            <div class="result-card" id="resultCard" style="display:none;">
+                <div class="result-title" id="resultText"></div>
+                <div class="confidence" id="confidenceText"></div>
+                <p class="save-status" id="saveStatus" style="display:none;">
+                    <i class="fas fa-check-circle"></i> Scan saved to your history!
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Recom outside scan containeer -->
+    <div class="recom" id="recomSection" style="display:none;">
+        <h2><i class="fas fa-shopping-bag"></i> Recommended Products</h2>
+        <p>Get the right fungicide to protect your crops!</p>
+        <a href="products.html" class="recom-btn">
+            <i class="fas fa-eye"></i> View Products
+        </a>
     </div>
 
-    <div class="recom" id="recomSection" style="display: none;">
-        <h1>Recommended Products</h1>
-        <p>Here's are some recommended products to prevent disease.</p>
-        <a href="products.html" class="btn recom-btn" ><i class="fas fa-eye 2x "></i>
-                View Products</a>
+    <!-- Scan History -->
+    <div class="history-container">
+        <h2><i class="fas fa-history"></i> Your Scan History</h2>
+        <div id="historyList">
+            <div class="no-history">Loading your scan history...</div>
+        </div>
     </div>
 
-</div>
+    <footer class="footer bg-dark">
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+            <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+        </div>
+        <p>Copyright &copy; 2026 - Grootify</p>
+    </footer>
 
+    <script>
+        const API = "http://127.0.0.1:8000";
+        const token = localStorage.getItem("token");
+        const farmerName = localStorage.getItem("farmer_name");
 
+        // ---- elements ----
+        const resultCard = document.getElementById("resultCard");
+        const resultText = document.getElementById("resultText");
+        const confidenceText = document.getElementById("confidenceText");
+        const saveStatus = document.getElementById("saveStatus");
+        const recomSection = document.getElementById("recomSection");
+        const dropArea = document.getElementById("dropArea");
+        const fileInput = document.getElementById("fileInput");
+        const preview = document.getElementById("leafPreview");
 
-<script>
-    const dropArea = document.getElementById("dropArea");
-    const fileInput = document.getElementById("fileInput");
-    const preview = document.getElementById("leafPreview");
-    const resultCard = document.getElementById("resultCard");
-    const resultText = document.getElementById("resultText");
-    const confidenceText = document.getElementById("confidenceText");
-    const recomSection = document.getElementById("recomSection");
+        let selectedFile = null;
 
-    let selectedFile = null;
-
-    function openFile() {
-        fileInput.click();
-    }
-
-    dropArea.addEventListener("dragover", e => {
-        e.preventDefault();
-        dropArea.classList.add("active");
-    });
-
-    dropArea.addEventListener("dragleave", () => {
-        dropArea.classList.remove("active");
-    });
-
-    dropArea.addEventListener("drop", e => {
-        e.preventDefault();
-        dropArea.classList.remove("active");
-        selectedFile = e.dataTransfer.files[0];
-        showPreview(selectedFile);
-    });
-
-    fileInput.addEventListener("change", () => {
-        selectedFile = fileInput.files[0];
-        showPreview(selectedFile);
-    });
-
-    function showPreview(file) {
-        if (!file) return;
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-    }
-
-    async function scanLeaf() {
-        
-        recomSection.style.display = "none";
-
-        if (!selectedFile) {
-            alert("Please upload a leaf image first");
-            return;
+        // ---- check login ----
+        window.onload = function () {
+            if (!token) {
+                window.location.href = "./login.html";
+                return;
+            }
+            document.getElementById("farmerBadge").textContent = "Hi, " + farmerName + "!";
+            loadHistory();
         }
 
-        resultCard.style.display = "block";
-        resultText.textContent = "Scanning...";
-        confidenceText.textContent = "";
-        
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("farmer_name");
+            localStorage.removeItem("farmer_email");
+            window.location.href = "./login.html";
+        }
 
+        // ---- file upload ----
+        function openFile() { fileInput.click(); }
 
-        const formData = new FormData();
-        formData.append("file", selectedFile);
+        dropArea.addEventListener("dragover", e => {
+            e.preventDefault();
+            dropArea.classList.add("active");
+        });
 
-        try {
-            const response = await fetch("http://localhost:8001/predict", {
-                method: "POST",
-                body: formData
-            });
+        dropArea.addEventListener("dragleave", () => dropArea.classList.remove("active"));
 
-            const data = await response.json();
-            const confidence = (data.confidence * 100).toFixed(2);
+        dropArea.addEventListener("drop", e => {
+            e.preventDefault();
+            dropArea.classList.remove("active");
+            selectedFile = e.dataTransfer.files[0];
+            showPreview(selectedFile);
+        });
 
-            if (data.class === "Healthy") {
-                resultText.className = "result-title healthy";
-                recomSection.style.display = "none";
-            } else {
-                resultText.className = "result-title disease";
-                recomSection.style.display = "block";
+        fileInput.addEventListener("change", () => {
+            selectedFile = fileInput.files[0];
+            showPreview(selectedFile);
+        });
+
+        function showPreview(file) {
+            if (!file) return;
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        }
+
+        // ---- SCAN LEAF ----
+        async function scanLeaf() {
+
+            if (!selectedFile) {
+                alert("Please upload a leaf image first!");
+                return;
             }
 
-            resultText.textContent = "Result: " + data.class;
-            confidenceText.textContent = "Confidence: " + confidence + "%";
-
-        } catch (err) {
-            resultText.textContent = "Error connecting to server";
-            confidenceText.textContent = "";
+            // reset UI
+            saveStatus.style.display = "none";
             recomSection.style.display = "none";
+            resultCard.style.display = "block";
+            resultText.className = "result-title";
+            resultText.textContent = "Scanning...";
+            confidenceText.textContent = "";
+
+            const formData = new FormData();
+            formData.append("file", selectedFile);
+
+            try {
+                const response = await fetch(`${API}/predict`, {
+                    method: "POST",
+                    headers: { "Authorization": `Bearer ${token}` },
+                    body: formData
+                });
+
+                if (response.status === 401) {
+                    alert("Session expired. Please login again.");
+                    logout();
+                    return;
+                }
+
+                const data = await response.json();
+                const confidence = (data.confidence * 100).toFixed(2);
+
+                // show result permanently
+                resultCard.style.display = "block";
+                resultText.textContent = "Result: " + data.class;
+                confidenceText.textContent = "Confidence: " + confidence + "%";
+
+                // keep preview visible
+                preview.style.display = "block";
+
+                // show recom if disease
+                if (data.class === "Healthy") {
+                    resultText.className = "result-title healthy";
+                    recomSection.style.display = "none";
+                } else {
+                    resultText.className = "result-title disease";
+                    recomSection.style.display = "block";
+                }
+
+                // save in background — does NOT affect UI
+                saveScan(data.class, data.confidence);
+
+            } catch (err) {
+                resultText.textContent = "Error connecting to server";
+                confidenceText.textContent = "";
+            }
         }
-    }
- </script>
+
+        console.log("scanLeaf function defined:", typeof scanLeaf === "function");
+        console.log("scanLeaf function is callable");
 
 
-    <header class="scan-page">
-       <div id="navbar" class="navbar">
-                <h1 class="logo">
-                    <span class="text-primary"><i class="fas fa-leaf"></i>Grootify</span>
-                </h1>
-                <nav>
-                    <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./index.html#about">About</a></li>
-                        <li><a href="./index.html">Contact</a></li> 
-                        <li><a class="open-btn" href="scan.html"><button class="btn scan-btn">Open to Scan</button></a></li>
-                    </ul>
-                </nav>
-            </div>
-    </header>
+        // ---- SAVE SCAN ----
+        async function saveScan(result, confidence) {
+            try {
+                const saveData = new FormData();
+                saveData.append("file", selectedFile);
+                saveData.append("result", result);
+                saveData.append("confidence", confidence);
 
-     <footer class="footer bg-dark">
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-                <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
-                <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-            </div>
-            <p>Copyright &copy; 2026 - Grootify</p>
+                const saveResponse = await fetch(`${API}/scans/save`, {
+                    method: "POST",
+                    headers: { "Authorization": `Bearer ${token}` },
+                    body: saveData
+                });
 
-    </footer>
-    
+                if (saveResponse.ok) {
+                    // just show saved message — nothing else changes!
+                    saveStatus.style.display = "block";
+                    // make sure preview still visible
+                    preview.style.display = "block";
+                    // make sure recom still visible if disease
+                    // (do NOT touch recomSection here!)
+                }
 
+            } catch (err) {
+                console.log("Could not save scan:", err);
+            }
+        }
+
+        // ---- LOAD HISTORY ----
+        async function loadHistory() {
+            const historyList = document.getElementById("historyList");
+
+            try {
+                const response = await fetch(`${API}/scans/history`, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+
+                const scans = await response.json();
+
+                if (!scans || scans.length === 0) {
+                    historyList.innerHTML = `
+                        <div class="no-history">
+                            <i class="fas fa-leaf"></i> No scans yet!
+                        </div>`;
+                    return;
+                }
+
+                historyList.innerHTML = scans.map(scan => {
+                    const date = new Date(scan.scanned_at + "Z");
+                    const formattedDate = date.toLocaleString("en-IN", {
+                        day: "2-digit", month: "short", year: "numeric",
+                        hour: "2-digit", minute: "2-digit",
+                        timeZone: "Asia/Kolkata"
+                    });
+
+                    const resultClass = scan.result === "Healthy" ? "healthy" : "disease";
+                    const conf = (scan.confidence * 100).toFixed(2);
+                    const imageUrl = `${API}/${scan.image_path}`;
+                    const icon = scan.result === "Healthy" ? "check-circle" : "exclamation-triangle";
+
+                    return `
+                    <div class="history-card" id="scan-${scan.id}">
+                        <img src="${imageUrl}" alt="Leaf scan"
+                             onerror="this.src='./images/placeholder.jpg'">
+                        <div class="history-info">
+                            <div class="history-result ${resultClass}">
+                                <i class="fas fa-${icon}"></i> ${scan.result}
+                            </div>
+                            <div class="history-confidence">Confidence: ${conf}%</div>
+                            <div class="history-date">
+                                <i class="fas fa-calendar"></i> ${formattedDate}
+                            </div>
+                        </div>
+                        <button class="delete-scan-btn" onclick="deleteScan(${scan.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>`;
+                }).join("");
+
+            } catch (err) {
+                historyList.innerHTML = `
+                    <div class="no-history">Could not load history.</div>`;
+            }
+        }
+
+        // ---- DELETE SCAN ----
+        async function deleteScan(scanId) {
+            if (!confirm("Delete this scan from history?")) return;
+
+            try {
+                const response = await fetch(`${API}/scans/${scanId}`, {
+                    method: "DELETE",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    document.getElementById(`scan-${scanId}`).remove();
+                    const remaining = document.querySelectorAll(".history-card");
+                    if (remaining.length === 0) {
+                        document.getElementById("historyList").innerHTML = `
+                            <div class="no-history">
+                                <i class="fas fa-leaf"></i> No scans yet!
+                            </div>`;
+                    }
+                }
+            } catch (err) {
+                alert("Could not delete scan. Try again.");
+            }
+        }
+    </script>
 
 </body>
+
 </html>
