@@ -235,8 +235,6 @@ http://127.0.0.1:8000
 - Farmer Dashboard
 - Cloud Deployment
 - Disease Severity Estimation
-- Fertilizer Recommendation
-- Treatment Recommendation
 - Weather-based Disease Prediction
 
 ---
