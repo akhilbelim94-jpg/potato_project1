@@ -8,6 +8,7 @@ import numpy as np
 import tensorflow as tf
 from pathlib import Path
 from sqlalchemy.orm import Session
+from pathlib import Path
 
 
 # import our files
@@ -44,8 +45,19 @@ app.mount("/scan_images", StaticFiles(directory="scan_images"), name="scan_image
 app.include_router(auth.router)
 app.include_router(scan_history.router)
 
-MODEL_PATH = Path(r"C:\Users\akhil\My_projects\potato_project2\traning\saved_models\potato_model\1\model_1.keras")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MODEL_PATH = (
+    BASE_DIR
+    / "traning"
+    / "saved_models"
+    / "potato_model"
+    / "1"
+    / "model_1.keras"
+)
+
 MODEL = tf.keras.models.load_model(MODEL_PATH)
+
 
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
