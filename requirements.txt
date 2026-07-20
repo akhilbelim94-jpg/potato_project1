@@ -11,5 +11,7 @@ python-multipart
 pydantic[email]
 
 passlib[bcrypt]
-python-jose[cryptography]
 bcrypt
+python-jose[cryptography]
+
+google-auth
