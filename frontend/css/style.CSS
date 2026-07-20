@@ -70,7 +70,7 @@ img {
 }
 
 #farmerInfo a:hover {
-    border-bottom: none;
+    border-bottom: none !important;
 }
 
 .navbar ul {
