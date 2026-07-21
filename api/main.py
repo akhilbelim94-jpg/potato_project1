@@ -53,7 +53,6 @@ MODEL_PATH = (
     / "traning"
     / "saved_models"
     / "potato_model"
-    / "1"
     / "model_1.keras"
 )
 
