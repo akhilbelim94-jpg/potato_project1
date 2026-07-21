@@ -34,7 +34,7 @@ app.add_middleware(
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "https://6a5f312ca1d6138a4c4f5443--gleaming-salamander-236793.netlify.app",
+        "https://gleaming-salamander-236793.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
