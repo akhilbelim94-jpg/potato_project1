@@ -9,3 +9,6 @@ scan_images/
 *.db
 *.sqlite
 *.sqlite3
+
+# Training dataset
+traning/PlantVillage/
