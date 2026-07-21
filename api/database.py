@@ -18,7 +18,9 @@ DATABASE_URL = os.getenv(
     "mysql+pymysql://root:AKKiSipahi2003@localhost:3306/grootify"
 )
 
+print("=" * 60)
 print("DATABASE_URL =", DATABASE_URL)
+print("=" * 60)
 
 # create_engine = creates the actual connection to MySQL
 # pool_pre_ping=True means it checks connection is alive before using it
