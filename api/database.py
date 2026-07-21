@@ -11,7 +11,14 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # mysql+pymysql://username:password@host:port/database_name
 # Change YOUR_PASSWORD to your actual MySQL root password
 # -------------------------------------------------------
-DATABASE_URL = "mysql+pymysql://root:AKKiSipahi2003@localhost:3306/grootify"
+import os
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "mysql+pymysql://root:AKKiSipahi2003@localhost:3306/grootify"
+)
+
+print("DATABASE_URL =", DATABASE_URL)
 
 # create_engine = creates the actual connection to MySQL
 # pool_pre_ping=True means it checks connection is alive before using it
