@@ -32,8 +32,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://6a5f0c936fbd1400086f2c23--akkisproject.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
