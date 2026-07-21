@@ -7,7 +7,7 @@
 } 
 
 body {
-    font-family: 'Open Sana', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #333;
     line-height: 1.6;
 }
@@ -69,9 +69,6 @@ img {
     transition: 0;
 }
 
-#farmerInfo a:hover {
-    border-bottom: none !important;
-}
 
 .navbar ul {
     display: flex;
@@ -241,14 +238,23 @@ img {
 {
     .navbar {
         flex-direction: column;
-        height: 120px;
+        height: auto;
+        min-height: 120px;
         padding: 20px;
     }
 
-    .navbar a {
-        padding: 10px 10px;
-        margin: 0 3px;
+    .navbar ul{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+        gap:10px;
     }
+
+    .navbar a{
+        padding:8px;
+    }
+    
 
     .icons-container {
         flex-direction: column;
